@@ -157,6 +157,20 @@ main {
     border-radius: 5px;
 }
 
+#coupon-message {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  #coupon-message.success {
+    color: green;
+  }
+  
+  #coupon-message.error {
+    color: red;
+  }
+
 .totals {
     margin-top: 20px;
 }

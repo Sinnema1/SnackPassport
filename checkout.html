@@ -1,94 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping Cart</title>
-    <link href="assets/css/checkout.css" rel="stylesheet">
-    <link href="assets/css/styles.css" rel="stylesheet">
-    
-</head>
-<body>
-    <header>
-        <div class="logo"></div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-        </div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Shop</a>
-            <a href="#">Help</a>
-        </nav>
-        <div class="cart">
-            <a href="#">Your Cart</a>
-        </div>
-    </header>
-    
-    <main>
-        <div class="checkout-steps">
-            <span>1. Shopping Cart</span>
-            <span>2. Shipping Details</span>
-            <span>3. Payment Options</span>
-        </div>
-        
-        <section class="shopping-cart">
-            <div class="cart-items">
-                <div class="cart-item">
-                    <div class="item-image"></div>
-                    <div class="item-details">
-                        <h4>PRODUCT NAME</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
-                        <span class="price">$300</span>
-                    </div>
-                    <div class="quantity">
-                        <label for="quantity">1 pcs</label>
-                    </div>
-                </div>
-                
-                <div class="cart-item">
-                    <div class="item-image"></div>
-                    <div class="item-details">
-                        <h4>PRODUCT NAME</h4>
-                        <p>Cras auctor tortor in augue ultricies, ut viverra urna accumsan.</p>
-                        <span class="price">$200</span>
-                    </div>
-                    <div class="quantity">
-                        <label for="quantity">1 pcs</label>
-                    </div>
-                </div>
-                
-                <div class="cart-buttons">
-                    <button class="next-btn">Next</button>
-                    <button class="cancel-btn">Cancel</button>
-                </div>
-            </div>
 
-            <div class="summary">
-                <h3>Summary</h3>
-                <label for="coupon">ENTER COUPON CODE</label>
-                <input type="text" id="coupon">
-                
-                <div class="totals">
-                    <div class="line-item">
-                        <span>SUBTOTAL</span>
-                        <span>$600</span>
-                    </div>
-                    <div class="line-item">
-                        <span>SHIPPING</span>
-                        <span>FREE</span>
-                    </div>
-                    <div class="line-item">
-                        <span>TAXES</span>
-                        <span>$13</span>
-                    </div>
-                    <div class="line-item total">
-                        <span>TOTAL</span>
-                        <span>$613</span>
-                    </div>
-                </div>
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <link href="assets/css/checkout.css" rel="stylesheet" />
+
+    <script defer src="./assets/js/logic.js" type="text/javascript"></script>
+    <script defer src="./assets/js/checkout.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo"></div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search..." />
+      </div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Shop</a>
+        <a href="#">Help</a>
+      </nav>
+      <div class="cart">
+        <a href="#">Your Cart</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="checkout-steps">
+        <span>1. Shopping Cart</span>
+        <span>2. Shipping Details</span>
+        <span>3. Payment Options</span>
+      </div>
+
+      <section class="shopping-cart">
+        <!-- Displayed Cart Items -->
+        <div class="cart-items">
+          <!-- Placeholder for dynamically rendered products -->
+          <div id="product-container">
+            <!-- JavaScript will populate cart items here -->
+          </div>
+
+          <!-- Next and Cancel buttons for cart actions -->
+          <div class="cart-buttons">
+            <button class="next-btn">Next</button>
+            <button class="cancel-btn">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Summary section for the coupon and total -->
+        <div class="summary">
+          <h3>Summary</h3>
+
+          <!-- Coupon input section -->
+          <div id="coupon-container">
+            <label for="coupon-code">Enter Coupon Code</label>
+            <input
+              type="text"
+              id="coupon-code"
+              placeholder="Enter coupon code"
+            />
+            <button id="apply-coupon">Apply Coupon</button>
+            <p id="coupon-message"></p>
+          </div>
+
+          <!-- Totals Section (Dynamically updated by JavaScript) -->
+          <div class="totals">
+            <div class="line-item">
+              <span>SUBTOTAL</span>
+              <span id="subtotal">$0.00</span>
             </div>
-        </section>
+            <div class="line-item">
+              <span>SHIPPING</span>
+              <span>FREE</span>
+            </div>
+            <div class="line-item">
+              <span>TAXES (5%)</span>
+              <span id="taxes">$0.00</span>
+            </div>
+            <div class="line-item total">
+              <span>TOTAL</span>
+              <span id="total">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-</body>
+  </body>
 </html>

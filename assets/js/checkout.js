@@ -14,46 +14,126 @@
 // ------the total price of the products should be retrieved from the local storage upon loading the checkout page.
 
 document.addEventListener('DOMContentLoaded', () => {
+  const couponCodeInput = document.getElementById('coupon-code');
+  const applyCouponButton = document.getElementById('apply-coupon');
+  const couponMessage = document.getElementById('coupon-message');
+  const subtotalElement = document.getElementById('subtotal');
+  const taxesElement = document.getElementById('taxes');
+  const totalElement = document.getElementById('total');
+  const productContainer = document.getElementById('product-container');
+
+  let isCouponApplied = false;
+
+// Create a function to remove an item from the cart
+const removeFromCart = function (productId) {
+  let cart = getLocalStorage("cart");
+  // Filter out the product to be removed
+  cart = cart.filter((item) => item.id !== productId);
+  setLocalStorage("cart", cart);
+};
+
+// Create a function to clear the cart
+const clearCart = function () {
+  setLocalStorage("cart", []);
+};
+
+document.getElementById('clear-cart-btn').addEventListener('click', () => {
+  clearCart();
+  handleCartDisplay(); // Refresh the cart after clearing it
+});
+
   // Function to display products on the checkout page
   function displayProducts(products) {
-    const productContainer = document.getElementById('product-container');
     productContainer.innerHTML = ''; // Clear any existing content
-
+  
     products.forEach(product => {
       const productElement = document.createElement('div');
       productElement.classList.add('product');
       productElement.innerHTML = `
         <h3>${product.name}</h3>
         <p>${product.description}</p>
+        <p>Quantity: ${product.quantity}</p>
         <p>Price: $${product.price}</p>
+        <p>Total: $${(product.price * product.quantity).toFixed(2)}</p>
+        <button class="remove-btn" data-id="${product.id}">Remove</button>
       `;
       productContainer.appendChild(productElement);
     });
-  }
-
-  // Function to calculate the total price of products
-  function calculateTotalPrice(products) {
-    return products.reduce((total, product) => total + product.price, 0);
+  
+    // Add event listeners to each "Remove" button
+    const removeButtons = document.querySelectorAll('.remove-btn');
+    removeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const productId = button.getAttribute('data-id');
+        removeFromCart(productId);
+        handleCartDisplay(); // Refresh the cart after removing an item
+      });
+    });
   }
 
   // Function to display the total price on the checkout page
   function displayTotalPrice(totalPrice) {
-    const totalPriceElement = document.getElementById('total-price');
-    totalPriceElement.textContent = `Total Price: $${totalPrice}`;
+    totalElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
   }
 
-  // Retrieve products from local storage and display them
-  const products = getLocalStorage('shoppingCart');
-  displayProducts(products);
+  // Function to calculate and display the subtotal, taxes, and total
+  function calculateAndDisplayTotals() {
+    const cartTotals = calculateCartTotal(); // Get subtotal and item count from cart
+    let subtotal = cartTotals.totalPrice;
+    const salesTaxRate = 0.05; // 5% tax
+    let taxes = subtotal * salesTaxRate;
+    let total = subtotal + taxes;
 
-  // Calculate and display the total price
-  const totalPrice = calculateTotalPrice(products);
-  displayTotalPrice(totalPrice);
+    // If coupon is applied, make the cart free
+    if (isCouponApplied) {
+      subtotal = 0;
+      taxes = 0;
+      total = 0;
+    }
 
-  // Store the total price in local storage
-  setLocalStorage('totalPrice', totalPrice);
+    // Update the DOM elements with the calculated values
+    subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+    taxesElement.textContent = `$${taxes.toFixed(2)}`;
+    totalElement.textContent = `$${total.toFixed(2)}`;
+  }
 
-  // Retrieve and display the total price from local storage
-  const storedTotalPrice = getLocalStorage('totalPrice');
-  displayTotalPrice(storedTotalPrice);
+  // Function to apply the coupon
+  function applyCoupon() {
+    const enteredCoupon = couponCodeInput.value.trim().toLowerCase(); // Normalize coupon code input
+    const validCoupon = "charlierocks"; // Correct coupon code (case-insensitive)
+
+    if (enteredCoupon === validCoupon) {
+      isCouponApplied = true;
+      couponMessage.textContent = "Coupon applied successfully! Your cart is free.";
+      couponMessage.style.color = "green";
+    } else {
+      isCouponApplied = false;
+      couponMessage.textContent = "Invalid coupon code. Please try again.";
+      couponMessage.style.color = "red";
+    }
+
+    // Recalculate totals after coupon application
+    calculateAndDisplayTotals();
+  }
+
+  // Function to handle displaying the cart and totals
+  function handleCartDisplay() {
+    const cart = getLocalStorage('cart') || []; // Get the cart from local storage (default to empty array)
+
+    if (cart.length > 0) {
+      displayProducts(cart);
+      calculateAndDisplayTotals(); // Calculate totals when page is loaded
+    } else {
+      productContainer.innerHTML = '<p>Your cart is empty.</p>';
+      subtotalElement.textContent = "$0.00";
+      taxesElement.textContent = "$0.00";
+      totalElement.textContent = "$0.00";
+    }
+  }
+
+  // Event listener to handle coupon application
+  applyCouponButton.addEventListener('click', applyCoupon);
+
+  // Initial display of cart items and totals
+  handleCartDisplay();
 });
