@@ -1,0 +1,129 @@
+/*
+  Resets
+*/
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1;
+  font-family: sans-serif;
+}
+
+​h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+
+​input,
+select,
+option,
+optgroup,
+textarea,
+button,
+pre,
+code {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+​ol,
+ul {
+  list-style: none;
+}
+
+/*
+  General Styles
+*/
+/*
+  Universal
+*/
+:root {
+  --light: #fff;
+  --light-accent: #f9f9fb;
+  --dark: #000;
+  --dark-accent: #222;
+  --dark-accent-action: #111;
+  --action: #563d7c;
+  --action-accent: #8570a5;
+  --disabled: #aaa;
+  --error: #ff0022;
+}
+
+* {
+  transition: background-color ease-in 0.5s;
+}
+
+/*
+  Tags
+*/
+header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+header,
+footer {
+  padding: 2rem;
+}
+
+main {
+  height: calc(100vh - 6rem);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  border-top: double 1rem;
+}
+
+/*
+  Classes
+*/
+.dark header,
+.dark footer {
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+.dark main {
+  background-color: var(--dark-accent);
+  color: var(--light);
+  border-top: solid 0.5rem var(--disabled);
+}
+
+.light header,
+.light footer {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.light main {
+  background-color: var(--light-accent);
+  color: var(--dark);
+}
+
+/*
+  IDs
+*/
+#toggle {
+  font-size: 1.52em;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-shadow: 0px 0px 0.5rem var(--light-accent);
+}
