@@ -2,7 +2,6 @@ let currentIndex = 0;
 const itemsPerPage = 3; // Define the number of items per page
 
 function moveCarousel(direction) {
-    console.log("Called!");
     const items = document.querySelector('.carousel-items');
     if (!items) {
         console.error('Carousel items container not found.');
