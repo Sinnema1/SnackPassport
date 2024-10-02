@@ -745,6 +745,8 @@ a:hover {
 .navbar-brand {
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-right: var(--bs-navbar-brand-margin-end);
   font-size: var(--bs-navbar-brand-font-size);
   color: var(--bs-navbar-brand-color);

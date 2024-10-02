@@ -1,0 +1,92 @@
+/* Simplified and custom styles */
+.navbar {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  background-color: rgba(248, 249, 250, 1);
+  padding: 1rem 3rem;
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+  margin-right: 1rem;
+  white-space: nowrap;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul li {
+  display: inline-block;
+  margin-right: 0.25rem;
+}
+
+.navbar ul li a {
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.navbar ul li .dropdown {
+  position: relative;
+}
+
+.navbar ul li .dropdown .dropbtn {
+  color: black;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+}
+
+.navbar ul li .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.navbar ul li .dropdown-content a {
+  padding: 12px 16px;
+  display: block;
+  color: black;
+  text-decoration: none;
+}
+
+.navbar ul li .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navbar ul li .dropdown:hover .dropbtn {
+  background-color: paleturquoise;
+}
+
+.dark-btn {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #212529;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.span {
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  padding: 0.25rem;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}
