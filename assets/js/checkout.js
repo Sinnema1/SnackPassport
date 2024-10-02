@@ -21,26 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const taxesElement = document.getElementById('taxes');
   const totalElement = document.getElementById('total');
   const productContainer = document.getElementById('product-container');
+  const clearCartButton = document.getElementById('clear-cart-btn');
 
   let isCouponApplied = false;
 
-// Create a function to remove an item from the cart
-const removeFromCart = function (productId) {
-  let cart = getLocalStorage("cart");
-  // Filter out the product to be removed
-  cart = cart.filter((item) => item.id !== productId);
-  setLocalStorage("cart", cart);
-};
+  // Create a function to remove an item from the cart
+  const removeFromCart = function (productId) {
+    let cart = getLocalStorage("cart");
+    // Filter out the product to be removed
+    cart = cart.filter((item) => item.id !== productId);
+    setLocalStorage("cart", cart);
+  };
 
-// Create a function to clear the cart
-const clearCart = function () {
-  setLocalStorage("cart", []);
-};
+  // Create a function to clear the cart
+  const clearCart = function () {
+    setLocalStorage("cart", []);
+  };
 
-document.getElementById('clear-cart-btn').addEventListener('click', () => {
-  clearCart();
-  handleCartDisplay(); // Refresh the cart after clearing it
-});
+  if (clearCartButton) {
+    clearCartButton.addEventListener('click', () => {
+      clearCart();
+      handleCartDisplay(); // Refresh the cart after clearing it
+    });
+  }
 
   // Function to display products on the checkout page
   function displayProducts(products) {
@@ -132,7 +135,17 @@ document.getElementById('clear-cart-btn').addEventListener('click', () => {
   }
 
   // Event listener to handle coupon application
-  applyCouponButton.addEventListener('click', applyCoupon);
+  if (applyCouponButton) {
+    applyCouponButton.addEventListener('click', applyCoupon);
+  }
+
+  // Event listener to handle cancel button click
+  const cancelButton = document.querySelector('.cancel-btn'); // Select the cancel button
+  if (cancelButton) {
+    cancelButton.addEventListener('click', () => {
+      redirectPage('home.html'); // Redirect to the home page
+    });
+  }
 
   // Initial display of cart items and totals
   handleCartDisplay();

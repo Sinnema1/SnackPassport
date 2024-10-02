@@ -98,11 +98,11 @@ const updateCartQuantity = function (productId, newQuantity) {
 
 // ! Use the following function whenever you need to redirect to a different page
 
-const redirectPage = function (url) {
+const redirectPage = function (url, homePageUrl = 'home.html') {
     if (url && typeof url === "string") {
       location.assign(url);
     } else {
       console.error("Invalid URL, defaulting to homepage.");
-      location.assign("/"); // Default redirect to the homepage
+      location.assign(homePageUrl); // Default redirect to the homepage
     }
   };
