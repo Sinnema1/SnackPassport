@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
-* Start Bootstrap - Shop Item v5.0.6 (https://startbootstrap.com/template/shop-item)
+* Start Bootstrap - Shop Homepage v5.0.6 (https://startbootstrap.com/template/shop-homepage)
 * Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-item/blob/master/LICENSE)
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
 */
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
@@ -8078,9 +8078,10 @@ textarea.form-control-lg {
   color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
 }
 
-.text-white {
+.text-white, .content {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+  display: block;
 }
 
 .text-body {
@@ -10823,4 +10824,5 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+ 
 }
