@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalElement = document.getElementById('total');
   const productContainer = document.getElementById('product-container');
   const clearCartButton = document.getElementById('clear-cart-btn');
-  const cancelButton = document.querySelector('.cancel-btn'); // Select the cancel button
+  const cancelButton = document.querySelector('.cancel-btn'); 
+  const nextButton = document.querySelector('.next-btn'); 
 
   let isCouponApplied = false;
 
