@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -7,14 +8,17 @@
     <meta name="author" content="" />
     <title>Snack Passport</title>
     <link href="assets/css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMm3fUR0wFZPqTA/mQR1/MU1SB1I3X+fwtY/hgL" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMm3fUR0wFZPqTA/mQR1/MU1SB1I3X+fwtY/hgL" crossorigin="anonymous"> -->
 
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="#!">Snack Passport</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -22,10 +26,13 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">All Products</a></li>
-                            <li><hr class="dropdown-divider" /></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
                             <li><a class="dropdown-item" href="#!">Shop By Country</a></li>
                             <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                         </ul>
@@ -44,24 +51,28 @@
 
     <header class="bg-dark">
         <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
+            <div class="text-center">
                 <h1 class="display-4 fw-bolder">Snack Your Way Around the Globe!</h1>
-                <p class="headerP">Snack Passport is your one-stop shop for international snacks</p>
             </div>
-            <div class="snackbox"><img src="assets/images/image16.png" alt="snackbox"> </div>
+        </div>
+        <div class="snackbox"><img src="assets/images/image16.png" alt="snackbox">
+            <p>Snack Passport is your one-stop shop for international snacks!</p>
         </div>
     </header>
 
-    <main class ="main">
+    <main class="main">
         <section>
+            <p>Featured Items</p>
             <div class="carousel-container">
                 <div class="carousel">
                     <div class="carousel-items">
                         <div class="item"><img src="assets/images/image1.png" alt="chocolate bar"> </div>
                         <div class="item"><img src="assets/images/image4.png" alt="pretzel"></div>
                         <div class="item"><img src="assets/images/image11.png" alt="Image 3"></div>
-                        <div class="item"><img src="https://via.placeholder.com/300x200?text=Image+4" alt="Image 4"></div>
-                        <div class="item"><img src="https://via.placeholder.com/300x200?text=Image+5" alt="Image 5"></div>
+                        <div class="item"><img src="https://via.placeholder.com/300x200?text=Image+4" alt="Image 4">
+                        </div>
+                        <div class="item"><img src="https://via.placeholder.com/300x200?text=Image+5" alt="Image 5">
+                        </div>
                     </div>
                 </div>
                 <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
@@ -78,10 +89,13 @@
                 <li>Follow Us! <i class="fa-brands fa-twitter"></i>></li>
             </ul>
         </div>
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Snack Passport 2024</p></div>
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Snack Passport 2024</p>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

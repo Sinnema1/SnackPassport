@@ -1172,4 +1172,30 @@ button:hover {
   }
 }
 
-.snackbox {}
+.snackbox {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.snackbox img {
+  width: 400px;
+  border-radius: 50px;
+  padding-right: 30px;
+  
+}
+
+.snackbox p {
+  font-size: 40px;
+  flex: 1;
+  padding-left: 50px;
+  
+}
+.main p {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+
+}
