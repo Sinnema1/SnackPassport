@@ -13,6 +13,7 @@
 // ------the total price of the products should be stored in the local storage.
 // ------the total price of the products should be retrieved from the local storage upon loading the checkout page.
 
+// Call the function within the DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
   const couponCodeInput = document.getElementById('coupon-code');
   const applyCouponButton = document.getElementById('apply-coupon');
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalElement = document.getElementById('total');
   const productContainer = document.getElementById('product-container');
   const clearCartButton = document.getElementById('clear-cart-btn');
+  const cancelButton = document.querySelector('.cancel-btn'); // Select the cancel button
 
   let isCouponApplied = false;
 
@@ -140,13 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Event listener to handle cancel button click
-  const cancelButton = document.querySelector('.cancel-btn'); // Select the cancel button
   if (cancelButton) {
     cancelButton.addEventListener('click', () => {
-      redirectPage('home.html'); // Redirect to the home page
+      redirectPage('index.html'); // Redirect to the home page
     });
   }
 
   // Initial display of cart items and totals
   handleCartDisplay();
+
+  // Set up the cart button redirect
+  setupCartButtonRedirect();
 });

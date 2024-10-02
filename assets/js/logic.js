@@ -9,6 +9,16 @@ const renderCartDetails = function () {
   ).textContent = `$${cartDetails.totalPrice}`;
 };
 
+// Define the function to set up the cart button redirect
+function setupCartButtonRedirect() {
+    const cartButton = document.getElementById('cart-button');
+    if (cartButton) {
+      cartButton.addEventListener('click', () => {
+        window.location.href = 'checkout.html'; // Redirect to checkout.html
+      });
+    }
+  }
+
 // Create a form validation function
 const validateForm = function (form) {
   const inputs = form.querySelectorAll("input, select, textarea");
@@ -98,7 +108,7 @@ const updateCartQuantity = function (productId, newQuantity) {
 
 // ! Use the following function whenever you need to redirect to a different page
 
-const redirectPage = function (url, homePageUrl = 'home.html') {
+const redirectPage = function (url, homePageUrl = 'index.html') {
     if (url && typeof url === "string") {
       location.assign(url);
     } else {
