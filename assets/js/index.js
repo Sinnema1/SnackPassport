@@ -25,7 +25,3 @@ function moveCarousel(direction) {
     const offset = -(currentIndex * (100 / itemsPerPage));
     items.style.transform = `translateX(${offset}%)`;
 }
-document.addEventListener('DOMContentLoaded', () => {
-    // Set up the cart button redirect
-    setupCartButtonRedirect();
-});

@@ -1,32 +1,5 @@
-// --the logic of the page should include using the local storage to store the products that the user has selected to buy.
-// ----assume that setLocalStorage and getLocalStorage and redirectURL functions are already created.
-// ----assume that the customer has selected products to buy from the product page and has navigated to the shopping cart page.
-// ----Product name, product description, product image, and the price of the products that the user selected should be stored in local storage.
-// ----The products need to be retrieved from local storage upon loading the shopping cart page.
-// ------the data needed from the product page local storage is the product name, product description, product image, and the price.
-// ------the data should be stored in an array of objects.
-// ------the array of objects should be stored in the local storage.
-// ------the array of objects should be retrieved from the local storage upon loading the checkout page.
-// ------the array of objects should be displayed on the checkout page.
-// ------the array of objects should be used to calculate the total price of the products.
-// ------the total price of the products should be displayed on the checkout page.
-// ------the total price of the products should be stored in the local storage.
-// ------the total price of the products should be retrieved from the local storage upon loading the checkout page.
-
-// Call the function within the DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', () => {
-  const couponCodeInput = document.getElementById('coupon-code');
-  const applyCouponButton = document.getElementById('apply-coupon');
-  const couponMessage = document.getElementById('coupon-message');
-  const subtotalElement = document.getElementById('subtotal');
-  const taxesElement = document.getElementById('taxes');
-  const totalElement = document.getElementById('total');
-  const productContainer = document.getElementById('product-container');
-  const clearCartButton = document.getElementById('clear-cart-btn');
-  const cancelButton = document.querySelector('.cancel-btn'); 
-  const nextButton = document.querySelector('.next-btn'); 
-
-  let isCouponApplied = false;
+document.addEventListener("DOMContentLoaded", () => {
+  // Utility Functions (Basic cart operations)
 
   // Create a function to remove an item from the cart
   const removeFromCart = function (productId) {
@@ -41,20 +14,41 @@ document.addEventListener('DOMContentLoaded', () => {
     setLocalStorage("cart", []);
   };
 
-  if (clearCartButton) {
-    clearCartButton.addEventListener('click', () => {
-      clearCart();
-      handleCartDisplay(); // Refresh the cart after clearing it
+  // Function to calculate the total price and number of items in the cart
+  const calculateCartTotal = function () {
+    const cart = getLocalStorage("cart");
+
+    if (cart.length === 0) {
+      return {
+        totalPrice: 0,
+        totalItems: 0,
+      };
+    }
+
+    let totalPrice = 0;
+    let totalItems = 0;
+
+    cart.forEach((item) => {
+      totalPrice += item.price * item.quantity;
+      totalItems += item.quantity;
     });
-  }
+
+    return {
+      totalPrice,
+      totalItems,
+    };
+  };
+
+  // Functions for Displaying Products and Totals
 
   // Function to display products on the checkout page
   function displayProducts(products) {
-    productContainer.innerHTML = ''; // Clear any existing content
-  
-    products.forEach(product => {
-      const productElement = document.createElement('div');
-      productElement.classList.add('product');
+    const productContainer = document.getElementById("product-container");
+    productContainer.innerHTML = ""; // Clear any existing content
+
+    products.forEach((product) => {
+      const productElement = document.createElement("div");
+      productElement.classList.add("product");
       productElement.innerHTML = `
         <h3>${product.name}</h3>
         <p>${product.description}</p>
@@ -65,21 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       productContainer.appendChild(productElement);
     });
-  
+
     // Add event listeners to each "Remove" button
-    const removeButtons = document.querySelectorAll('.remove-btn');
-    removeButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const productId = button.getAttribute('data-id');
+    const removeButtons = document.querySelectorAll(".remove-btn");
+    removeButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const productId = button.getAttribute("data-id");
         removeFromCart(productId);
         handleCartDisplay(); // Refresh the cart after removing an item
       });
     });
-  }
-
-  // Function to display the total price on the checkout page
-  function displayTotalPrice(totalPrice) {
-    totalElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
   }
 
   // Function to calculate and display the subtotal, taxes, and total
@@ -89,6 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const salesTaxRate = 0.05; // 5% tax
     let taxes = subtotal * salesTaxRate;
     let total = subtotal + taxes;
+
+    const subtotalElement = document.getElementById("subtotal");
+    const taxesElement = document.getElementById("taxes");
+    const totalElement = document.getElementById("total");
 
     // If coupon is applied, make the cart free
     if (isCouponApplied) {
@@ -103,55 +96,131 @@ document.addEventListener('DOMContentLoaded', () => {
     totalElement.textContent = `$${total.toFixed(2)}`;
   }
 
+  // Function to handle displaying the cart and totals
+  function handleCartDisplay() {
+    const cart = getLocalStorage("cart") || []; // Get the cart from local storage (default to empty array)
+
+    if (cart.length > 0) {
+      displayProducts(cart);
+      calculateAndDisplayTotals(); // Calculate totals when page is loaded
+    } else {
+      document.getElementById("product-container").innerHTML =
+        "<p>Your cart is empty.</p>";
+      document.getElementById("subtotal").textContent = "$0.00";
+      document.getElementById("taxes").textContent = "$0.00";
+      document.getElementById("total").textContent = "$0.00";
+    }
+    updateCartCount(); // Update cart badge
+  }
+
+  // Function to update the cart count in the header
+  function updateCartCount() {
+    const cart = getLocalStorage("cart") || [];
+    const cartCount = cart.length;
+    document.querySelector("#cart-button .badge").textContent = cartCount;
+  }
+
+  // Coupon Handling and Other Event Listeners
+
   // Function to apply the coupon
   function applyCoupon() {
-    const enteredCoupon = couponCodeInput.value.trim().toLowerCase(); // Normalize coupon code input
+    const enteredCoupon = document
+      .getElementById("coupon-code")
+      .value.trim()
+      .toLowerCase(); // Normalize coupon code input
     const validCoupon = "charlierocks"; // Correct coupon code (case-insensitive)
+
+    const couponMessage = document.getElementById("coupon-message");
 
     if (enteredCoupon === validCoupon) {
       isCouponApplied = true;
-      couponMessage.textContent = "Coupon applied successfully! Your cart is free.";
-      couponMessage.style.color = "green";
+      couponMessage.textContent =
+        "Coupon applied successfully! Your cart is free.";
+      couponMessage.classList.remove("alert-danger");
+      couponMessage.classList.add("alert-success", "alert");
     } else {
       isCouponApplied = false;
       couponMessage.textContent = "Invalid coupon code. Please try again.";
-      couponMessage.style.color = "red";
+      couponMessage.classList.remove("alert-success");
+      couponMessage.classList.add("alert-danger", "alert");
     }
 
     // Recalculate totals after coupon application
     calculateAndDisplayTotals();
   }
 
-  // Function to handle displaying the cart and totals
-  function handleCartDisplay() {
-    const cart = getLocalStorage('cart') || []; // Get the cart from local storage (default to empty array)
+  // Modal Form Validation Logic (Uses existing validateForm from logic.js)
+  const modalForm = document.querySelector("#modalSignin form");
 
-    if (cart.length > 0) {
-      displayProducts(cart);
-      calculateAndDisplayTotals(); // Calculate totals when page is loaded
+  // Function to validate email format
+  const isValidEmail = function (email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Function to validate password (e.g., min length of 6 characters)
+  const isValidPassword = function (password) {
+    return password.length >= 6;
+  };
+
+  // Event listener for "Sign up" button in the modal
+  modalForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent the form from submitting immediately
+
+    const emailInput = document.getElementById("floatingInput");
+    const passwordInput = document.getElementById("floatingPassword");
+
+    // Validate the form fields using the validateForm from logic.js
+    let formIsValid = validateForm(modalForm);
+
+    // Custom email validation
+    if (!isValidEmail(emailInput.value)) {
+      emailInput.classList.add("error");
+      formIsValid = false;
     } else {
-      productContainer.innerHTML = '<p>Your cart is empty.</p>';
-      subtotalElement.textContent = "$0.00";
-      taxesElement.textContent = "$0.00";
-      totalElement.textContent = "$0.00";
+      emailInput.classList.remove("error");
     }
-  }
 
-  // Event listener to handle coupon application
-  if (applyCouponButton) {
-    applyCouponButton.addEventListener('click', applyCoupon);
-  }
+    // Custom password validation
+    if (!isValidPassword(passwordInput.value)) {
+      passwordInput.classList.add("error");
+      formIsValid = false;
+    } else {
+      passwordInput.classList.remove("error");
+    }
 
-  // Event listener to handle cancel button click
-  if (cancelButton) {
-    cancelButton.addEventListener('click', () => {
-      redirectPage('index.html'); // Redirect to the home page
+    // If form is valid, submit or perform further actions
+    if (formIsValid) {
+      console.log("Form is valid, proceeding...");
+      modalForm.submit(); // Optionally submit or handle further logic
+    } else {
+      console.log("Form contains errors. Please fix them.");
+    }
+  });
+
+  // Event Listeners
+  document
+    .getElementById("apply-coupon")
+    .addEventListener("click", applyCoupon);
+
+  if (document.getElementById("clear-cart-btn")) {
+    document.getElementById("clear-cart-btn").addEventListener("click", () => {
+      if (confirm("Are you sure you want to clear the cart?")) {
+        clearCart();
+        handleCartDisplay(); // Refresh the cart after clearing it
+      }
     });
   }
 
-  // Initial display of cart items and totals
-  handleCartDisplay();
+  document.querySelector(".cancel-btn").addEventListener("click", () => {
+    redirectPage("index.html"); // Redirect to the home page
+  });
 
-  // Set up the cart button redirect
-  setupCartButtonRedirect();
+  document.querySelector(".next-btn").addEventListener("click", () => {
+    const modal = new bootstrap.Modal(document.getElementById("modalSignin"));
+    modal.show();
+  });
+
+  // Initial page load logic
+  handleCartDisplay(); // Initial display of cart items and totals
 });
