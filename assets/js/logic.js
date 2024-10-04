@@ -68,7 +68,7 @@ const redirectPage = function (url, homePageUrl = "index.html") {
 // Create a function to update the cart count in the header
 function updateCartCount() {
   const cart = getLocalStorage("cart") || [];
-  const cartCount = cart.length;
+  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const cartButtonBadge = document.querySelector("#cart-button .badge");
 
   if (cartButtonBadge) {
@@ -76,15 +76,15 @@ function updateCartCount() {
   }
 }
 
-// Define the function to set up the cart button redirect
+// Function to set up the cart button for redirecting to checkout page
 function setupCartButtonRedirect() {
-  const cartButton = document.getElementById("cart-button");
-  if (cartButton) {
-    cartButton.addEventListener("click", () => {
-      window.location.href = "checkout.html"; // Redirect to checkout.html
-    });
+    const cartButton = document.getElementById("cart-button");
+    if (cartButton) {
+      cartButton.addEventListener("click", () => {
+        window.location.href = "checkout.html"; // Redirect to checkout.html
+      });
+    }
   }
-}
 
 // Common Form Validation (Kept for future use on multiple pages)
 const validateForm = function (form) {
