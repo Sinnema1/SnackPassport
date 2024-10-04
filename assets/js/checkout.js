@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let isCouponApplied = false; // Initialize as false by default
   // Utility Functions (Basic cart operations)
 
   // Create a function to remove an item from the cart
@@ -9,15 +10,26 @@ document.addEventListener("DOMContentLoaded", () => {
     setLocalStorage("cart", cart);
   };
 
-  // Create a function to clear the cart
   const clearCart = function () {
-    setLocalStorage("cart", []);
+    setLocalStorage("cart", []);  // Clear the cart in local storage
+    isCouponApplied = false;      // Reset the coupon applied state
+    
+    // Clear the coupon message
+    const couponMessage = document.getElementById("coupon-message");
+    couponMessage.textContent = "";         // Clear the coupon message content
+    couponMessage.classList.remove("alert", "alert-success", "alert-danger"); // Remove any classes
+  
+    // Clear the coupon input field
+    const couponInput = document.getElementById("coupon-code");
+    couponInput.value = ""; // Reset the input field
+  
+    handleCartDisplay();          // Refresh the cart display
   };
 
   // Function to calculate the total price and number of items in the cart
   const calculateCartTotal = function () {
     const cart = getLocalStorage("cart");
-
+    console.log("Cart data:", cart);
     if (cart.length === 0) {
       return {
         totalPrice: 0,
@@ -133,13 +145,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const couponMessage = document.getElementById("coupon-message");
 
     if (enteredCoupon === validCoupon) {
-      isCouponApplied = true;
+      isCouponApplied = true; // Set to true when coupon is applied
       couponMessage.textContent =
         "Coupon applied successfully! Your cart is free.";
       couponMessage.classList.remove("alert-danger");
       couponMessage.classList.add("alert-success", "alert");
     } else {
-      isCouponApplied = false;
+      isCouponApplied = false; // Set to false if coupon is invalid
       couponMessage.textContent = "Invalid coupon code. Please try again.";
       couponMessage.classList.remove("alert-success");
       couponMessage.classList.add("alert-danger", "alert");
@@ -206,8 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("clear-cart-btn")) {
     document.getElementById("clear-cart-btn").addEventListener("click", () => {
       if (confirm("Are you sure you want to clear the cart?")) {
-        clearCart();
-        handleCartDisplay(); // Refresh the cart after clearing it
+        clearCart(); // Calls the updated clearCart function
       }
     });
   }
