@@ -1,0 +1,91 @@
+/* Reset.css - Basic Reset for Cross-browser Consistency */
+
+/* Remove all margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Remove list styles */
+  ul, ol {
+    list-style: none;
+  }
+  
+  /* Remove text decoration and color from links */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Set default font size and family */
+  html {
+    font-size: 100%; /* 1rem = 16px */
+    line-height: 1.5;
+  }
+  
+  /* Ensure images and media do not exceed container width */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Remove border from images */
+  img {
+    border-style: none;
+  }
+  
+  /* Reset table properties */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  /* Reset button and input styles */
+  button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    line-height: inherit;
+  }
+  
+  /* Set a consistent border-box for form elements */
+  button, input, select, textarea {
+    box-sizing: border-box;
+  }
+  
+  /* Reset headings and ensure consistent font sizing */
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+  }
+  
+  /* Reset blockquote */
+  blockquote {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Reset hr tag */
+  hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    height: 0;
+  }
+  
+  /* Remove default background and border on form elements */
+  input, textarea {
+    background-color: transparent;
+    border: none;
+  }
+  
+  /* Remove the appearance of fieldset and legend */
+  fieldset, legend {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
