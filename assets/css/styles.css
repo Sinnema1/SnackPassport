@@ -690,5 +690,17 @@ textarea.error {
   .nav-link:focus {
     outline: 2px solid #007bff;
   }
-  
-  
+
+/* Product Page alert notifications */
+.alert {
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px; /* Add some margin above the alert */
+  display: inline-block; /* Ensure it appears inline under the button */
+  width: 100%; /* Adjust the width as per container */
+}
+
+.alert-success {
+  background-color: #4caf50;
+  color: white;
+}

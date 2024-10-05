@@ -5,7 +5,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // Use addToCart from logic.js to handle adding products to the cart
   const addToCartHandler = function (product) {
     addToCart(product); // Calls the addToCart function from logic.js
-    alert("Product added to cart");
+    showNotification("Product added to cart!"); // Show success message
+    updateCartCount(); // Update the cart count
+  };
+
+  // Function to display the notification message
+  const showNotification = function (message) {
+    const notification = document.getElementById("notification");
+    notification.textContent = message;
+    notification.style.display = "block";
+    notification.classList.add("alert", "alert-success");
+
+    // Automatically hide the notification after 3 seconds
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
   };
 
   // Event listener for the "Add to Cart" button (no ID, but uses class)
@@ -37,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Add product to the cart using the function from logic.js
       addToCartHandler(product);
-      updateCartCount(); // Update cart count in the header after adding the item
     });
   }
 

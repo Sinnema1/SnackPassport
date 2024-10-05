@@ -56,35 +56,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Functions for Displaying Products and Totals
 
-  // Function to display products on the checkout page
-  function displayProducts(products) {
-    const productContainer = document.getElementById("product-container");
-    productContainer.innerHTML = ""; // Clear any existing content
+// Function to display products on the checkout page
+function displayProducts(products) {
+  const productContainer = document.getElementById("product-container");
+  productContainer.innerHTML = ""; // Clear any existing content
 
-    products.forEach((product) => {
-      const productElement = document.createElement("div");
-      productElement.classList.add("product");
-      productElement.innerHTML = `
-        <h3>${product.name}</h3>
-        <p>${product.description}</p>
-        <p>Quantity: ${product.quantity}</p>
-        <p>Price: $${product.price}</p>
-        <p>Total: $${(product.price * product.quantity).toFixed(2)}</p>
-        <button class="remove-btn" data-id="${product.id}">Remove</button>
-      `;
-      productContainer.appendChild(productElement);
-    });
+  products.forEach((product) => {
+    const productElement = document.createElement("div");
+    productElement.classList.add("product");
 
-    // Add event listeners to each "Remove" button
-    const removeButtons = document.querySelectorAll(".remove-btn");
-    removeButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        const productId = button.getAttribute("data-id");
-        removeFromCart(productId);
-        handleCartDisplay(); // Refresh the cart after removing an item
-      });
+    // Add an image to the product HTML
+    productElement.innerHTML = `
+      <h3>${product.name}</h3>
+      <img src="${product.image}" alt="${product.name}" style="width:100px;height:auto;" />
+      <p>Quantity: ${product.quantity}</p>
+      <p>Price: $${product.price}</p>
+      <p>Total: $${(product.price * product.quantity).toFixed(2)}</p>
+      <button class="remove-btn" data-id="${product.id}">Remove</button>
+    `;
+
+    productContainer.appendChild(productElement);
+  });
+
+  // Add event listeners to each "Remove" button
+  const removeButtons = document.querySelectorAll(".remove-btn");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const productId = button.getAttribute("data-id");
+      removeFromCart(productId);
+      handleCartDisplay(); // Refresh the cart after removing an item
     });
-  }
+  });
+}
 
   // Function to calculate and display the subtotal, taxes, and total
   function calculateAndDisplayTotals() {
