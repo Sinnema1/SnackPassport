@@ -79,9 +79,9 @@ code .
 ```
 Alternatively, you can open Visual Studio Code manually:
 
-	1.	Open Visual Studio Code.
-	2.	Click on File > Open Folder.
-	3.	Select the project folder you cloned.
+1.	Open Visual Studio Code.
+2.	Click on File > Open Folder.
+3.	Select the project folder you cloned.
 
 **Step 4: Open in Browser**
 To view the website locally, open the index.html file in your browser. You can do this by navigating to the folder and double-clicking on index.html, or by right-clicking the file and choosing Open With > Browser.
@@ -90,21 +90,21 @@ To view the website locally, open the index.html file in your browser. You can d
 
 If you want to contribute to this website:
 
-	1.	Create a new branch for your feature or bug fix:
+1.	Create a new branch for your feature or bug fix:
 ```bash
 git checkout -b feature-branch-name
 ```
-	2.	Make your changes and commit them:
+2.	Make your changes and commit them:
   ```bash
 git commit -m "Description of changes"
 ```
-	3.	Push your branch to GitHub:
+3.	Push your branch to GitHub:
 ```bash
 git push origin feature-branch-name
 ```
-	4.	Create a pull request (PR) to the original repository.
+4.	Create a pull request (PR) to the original repository.
 
-Troubleshooting
+## Troubleshooting
 
 If you encounter any issues while setting up or running the website, refer to the documentation in the repository or the GitHub Issues page for common solutions.
 
