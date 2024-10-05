@@ -21,11 +21,10 @@ const addToCart = function (product) {
   const existingProduct = cart.find((item) => item.id === product.id);
 
   if (existingProduct) {
-    // If the product exists, update the quantity
-    existingProduct.quantity += 1;
+    // If the product exists, update the quantity by the selected quantity
+    existingProduct.quantity += product.quantity;
   } else {
-    // Otherwise, add the product to the cart
-    product.quantity = 1;
+    // Otherwise, add the product to the cart with the selected quantity
     cart.push(product);
   }
 
@@ -76,15 +75,15 @@ function updateCartCount() {
   }
 }
 
-// Function to set up the cart button for redirecting to checkout page
-function setupCartButtonRedirect() {
-    const cartButton = document.getElementById("cart-button");
-    if (cartButton) {
-      cartButton.addEventListener("click", () => {
-        window.location.href = "checkout.html"; // Redirect to checkout.html
-      });
-    }
+// Function to set up the cart button for redirecting to a specific page
+function setupCartButtonRedirect(buttonId = "cart-button", targetPage = "checkout.html") {
+  const cartButton = document.getElementById(buttonId);
+  if (cartButton) {
+    cartButton.addEventListener("click", () => {
+      redirectPage(targetPage); // Use the dynamic page passed
+    });
   }
+}
 
 // Common Form Validation (Kept for future use on multiple pages)
 const validateForm = function (form) {

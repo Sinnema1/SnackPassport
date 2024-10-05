@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // Update the cart count when the page loads
+    updateCartCount();
 let currentIndex = 0;
 const itemsPerPage = 3; // Define the number of items per page
 
@@ -25,3 +28,4 @@ function moveCarousel(direction) {
     const offset = -(currentIndex * (100 / itemsPerPage));
     items.style.transform = `translateX(${offset}%)`;
 }
+});

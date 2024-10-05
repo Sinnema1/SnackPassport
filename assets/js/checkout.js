@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   let isCouponApplied = false; // Initialize as false by default
+
+  // Update the cart count when the page loads
+  updateCartCount();
+
   // Utility Functions (Basic cart operations)
 
   // Create a function to remove an item from the cart
@@ -29,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to calculate the total price and number of items in the cart
   const calculateCartTotal = function () {
     const cart = getLocalStorage("cart");
-    console.log("Cart data:", cart);
     if (cart.length === 0) {
       return {
         totalPrice: 0,
@@ -125,11 +128,18 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount(); // Update cart badge
   }
 
-  // Function to update the cart count in the header
+  // Function to update the cart count in the header (total quantity of items)
   function updateCartCount() {
     const cart = getLocalStorage("cart") || [];
-    const cartCount = cart.length;
-    document.querySelector("#cart-button .badge").textContent = cartCount;
+    let totalQuantity = 0;
+
+    // Calculate total quantity of items in the cart
+    cart.forEach((item) => {
+      totalQuantity += item.quantity;
+    });
+
+    // Update the badge with the total quantity
+    document.querySelector("#cart-button .badge").textContent = totalQuantity;
   }
 
   // Coupon Handling and Other Event Listeners
