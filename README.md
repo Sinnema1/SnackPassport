@@ -59,7 +59,53 @@ The project has been built with scalability in mind. Here's how future developer
    The JavaScript files can be refactored for performance, with optimizations such as lazy loading images, minifying assets, and tree-shaking unused code in production.
 
 ### How to Get Started:
-1. Clone the repository and open it in your preferred IDE.
-2. Install dependencies if any are needed, though this project is mostly static at the current stage.
-3. Open any HTML file in the browser or use a local server like `live-server` to test functionality.
-4. Modify CSS or JavaScript files to update functionality or design, and reload the page to see your changes.
+**Step 1: Clone the Repository**
+To clone the repository to your local machine, run the following command in your terminal or command prompt:
+
+```bash
+git clone https://github.com/username/repository-name.git
+```
+Replace username with the GitHub username and repository-name with the actual repository name.
+
+**Step 2: Navigate to the Project Directory**
+After cloning the repository, change to the project’s directory:
+```bash
+cd repository-name
+```
+**Step 3: Open the Project in Your IDE**
+Open the project in your preferred IDE. If you’re using Visual Studio Code, you can open the project by running the following command in the terminal (inside the project directory):
+```bash
+code .
+```
+Alternatively, you can open Visual Studio Code manually:
+
+	1.	Open Visual Studio Code.
+	2.	Click on File > Open Folder.
+	3.	Select the project folder you cloned.
+
+**Step 4: Open in Browser**
+To view the website locally, open the index.html file in your browser. You can do this by navigating to the folder and double-clicking on index.html, or by right-clicking the file and choosing Open With > Browser.
+
+**Step 5: Contributing**
+
+If you want to contribute to this website:
+
+	1.	Create a new branch for your feature or bug fix:
+```bash
+git checkout -b feature-branch-name
+```
+	2.	Make your changes and commit them:
+  ```bash
+git commit -m "Description of changes"
+```
+	3.	Push your branch to GitHub:
+```bash
+git push origin feature-branch-name
+```
+	4.	Create a pull request (PR) to the original repository.
+
+Troubleshooting
+
+If you encounter any issues while setting up or running the website, refer to the documentation in the repository or the GitHub Issues page for common solutions.
+
+Now you’re ready to explore and use the website locally!
