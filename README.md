@@ -63,7 +63,8 @@ The project has been built with scalability in mind. Here's how future developer
 ### How to Get Started:
 
 **Github Project: https://github.com/Sinnema1/SnackPassport**
-**Deployed Application: https://sinnema1.github.io/SnackPassport/**
+
+**Deployed Application: https://sinnema1.github.io/SnackPassport**
 
 **Step 1: Clone the Repository**
 To clone the repository to your local machine, run the following command in your terminal or command prompt:
