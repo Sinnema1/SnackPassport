@@ -1,5 +1,7 @@
 # Snack Passport: Your Global Snack Adventure!
 
+<img width="1167" alt="Screenshot 2024-10-06 at 4 07 28 PM" src="https://github.com/user-attachments/assets/b896069b-0654-4b7e-8ba0-cbd982e00967">
+
 ## Overview
 **Snack Passport** is a web-based application designed to offer an international selection of snacks from various regions of the world. Users can browse a collection of products, add them to their cart, and proceed to checkout to complete their orders. This project is structured to be highly modular and scalable for future enhancements.
 
@@ -59,6 +61,10 @@ The project has been built with scalability in mind. Here's how future developer
    The JavaScript files can be refactored for performance, with optimizations such as lazy loading images, minifying assets, and tree-shaking unused code in production.
 
 ### How to Get Started:
+
+**Github Project: https://github.com/Sinnema1/SnackPassport**
+**Deployed Application: https://sinnema1.github.io/SnackPassport/**
+
 **Step 1: Clone the Repository**
 To clone the repository to your local machine, run the following command in your terminal or command prompt:
 
